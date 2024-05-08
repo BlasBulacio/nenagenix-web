@@ -1,41 +1,25 @@
 import type { MetaFunction } from "@remix-run/deno";
 
+import styles from "../styles/index.module.css";
+
+
 export const meta: MetaFunction = () => {
   return [
-    { title: "New Remix App" },
-    { name: "description", content: "Welcome to Remix!" },
+    { title: "Nenagenix" },
+    { name: "description", content: "Welcome to Nenagenix's official website." },
   ];
 };
 
 export default function Index() {
   return (
-    <div style={{ fontFamily: "system-ui, sans-serif", lineHeight: "1.8" }}>
-      <h1>Welcome to Remix</h1>
-      <ul>
-        <li>
-          <a
-            target="_blank"
-            href="https://remix.run/tutorials/blog"
-            rel="noreferrer"
-          >
-            15m Quickstart Blog Tutorial
-          </a>
-        </li>
-        <li>
-          <a
-            target="_blank"
-            href="https://remix.run/tutorials/jokes"
-            rel="noreferrer"
-          >
-            Deep Dive Jokes App Tutorial
-          </a>
-        </li>
-        <li>
-          <a target="_blank" href="https://remix.run/docs" rel="noreferrer">
-            Remix Docs
-          </a>
-        </li>
-      </ul>
+    <div className={styles.homeContainer}>
+      <div className={styles.crossContainer}>
+        <img className={styles.cross} src="/resources/cross.svg" alt="cross" />
+      </div>
+      <div className={styles.textContainer}>
+        <p className={styles.infoText}>Nenagenix 2024</p>
+        <p className={styles.infoText}>Bohemian Groove Corp</p>
+      </div>
     </div>
   );
 }
