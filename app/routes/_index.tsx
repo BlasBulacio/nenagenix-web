@@ -5,7 +5,7 @@ import type { MetaFunction } from "@remix-run/deno";
 
 import styles from "~/styles/index.css?url";
 import ITopbarLink from "~/types/TopbarLink";
-import { Location, useLocation } from "@remix-run/react";
+import { Link, Location, useLocation } from "@remix-run/react";
 
 export const meta: MetaFunction = () => {
   return [
@@ -19,45 +19,15 @@ export const links: LinksFunction = () => [
 ];
 
 export default function Index() {
-  const location: Location = useLocation();
   const [crossClicked, setCrossClicked] = useState<boolean>(false);
-  console.log(location);
-
-  const onClickCross = () => setCrossClicked(true);
-  console.log(location);
-
-  const onKeyDownCross = (event: React.KeyboardEvent<HTMLImageElement>) => {
-    if (event.key === 'Enter') {
-      onClickCross();
-    }
-  };
-
-  const showText = (isCrossClicked: boolean) => isCrossClicked ? 'show-text' : '';
-
-  const crossStyles = (isCrossClicked: boolean): React.CSSProperties => ({
-    display: 'inline-block',
-    cursor: 'pointer',
-    width: '150px',
-    height: '150px',
-    transition: 'transform .7s ease-in-out',
-    transform: isCrossClicked ? 'rotate(-45deg)' : 'rotate(0)',
-    WebkitTransform: isCrossClicked ? 'rotate(-45deg)' : 'rotate(0)',
-    msTransform: isCrossClicked ? 'rotate(-45deg)' : 'rotate(0)',
-  });
-
-  const linkStyles = (link: ITopbarLink, isLast: boolean): React.CSSProperties => {
-    return ({
-      textDecoration: link.url === location.pathname ? 'underline' : 'none',
-      marginRight: !isLast ? '10px' : '0',
-      color: 'black'
-    });
-  };
+  const location: Location = useLocation();
 
   const topbarLinks: Array<ITopbarLink> = [
     {
       title: 'Home',
       url: '/'
-    },
+    }
+    /*
     {
       title: 'Galería',
       url: '/galeria'
@@ -66,13 +36,57 @@ export default function Index() {
       title: 'Links',
       url: '/links'
     }
+    */
   ]
+
+  const onClickCross = () => setCrossClicked(true);
+
+  const onKeyDownCross = (event: React.KeyboardEvent<HTMLImageElement>) => {
+    if (event.key === 'Enter') {
+      onClickCross();
+    }
+  };
+
+  const crossStyles = (isCrossClicked: boolean): React.CSSProperties => ({
+    display: 'inline-block',
+    cursor: isCrossClicked ? 'default' : 'pointer',
+    width: '190px',
+    transition: 'transform .7s ease-in-out',
+    transform: isCrossClicked ? 'rotate(0)' : 'rotate(-45deg)',
+    WebkitTransform: isCrossClicked ? 'rotate(0)' : 'rotate(-45deg)',
+    msTransform: isCrossClicked ? 'rotate(0)' : 'rotate(-45deg)',
+  });
+
+  const linkStyles = (link: ITopbarLink, isLast: boolean): React.CSSProperties => ({
+    textDecoration: link.url === location.pathname ? 'underline' : 'none',
+    marginRight: !isLast ? '10px' : '0',
+    color: 'black'
+  });
+
+  const linkToShopContainerStyles = (isCrossClicked: boolean): React.CSSProperties => ({
+    position: 'absolute',
+    bottom: '-55px',
+    right: 0,
+    left: 0,
+    zIndex: 1,
+    textAlign: 'center',
+    transition: 'opacity 0.5s ease',
+    opacity: isCrossClicked ? '1' : '0',
+    pointerEvents: isCrossClicked ? 'auto' : 'none',
+  });
 
   return (
     <div className="home-container">
       <div className="topbar">
         {topbarLinks.map((link: ITopbarLink, index: number) =>
-          <a key={index} className="small-text" style={linkStyles(link, index === topbarLinks.length)} href={link.url}>{link.title}</a>
+          <Link
+            key={index}
+            to={link.url}
+            title=""
+            style={linkStyles(link, index === topbarLinks.length)}
+          >
+            {link.title}
+          </Link>
         )}
       </div>
       <div className="content">
@@ -88,13 +102,23 @@ export default function Index() {
             src="/resources/cross.svg"
             alt="cross"
           />
-          <p className={`cross-text small-text hide-text ${showText(crossClicked)}`}> Adquiri tu CD </p>
+          <div
+            style={linkToShopContainerStyles(crossClicked)}
+          >
+            <Link
+              className="shop-link"
+              to="https://www.tiendanube.com/login"
+              title=""
+            >
+              Lo Más Cercano a Caer <br /> Preventa
+            </Link>
+          </div>
         </div>
       </div>
       <div className="footer">
-        <div className="text-container">
-          <p className="small-text">Nenagenix 2024</p>
-          <p className="small-text">Bohemian Groove Corp</p>
+        <div className="footer-text-container">
+          <p>Nenagenix 2024 ©</p>
+          <p>Bohemian Groove Corp ®</p>
         </div>
       </div>
     </div>

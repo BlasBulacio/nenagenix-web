@@ -31,12 +31,10 @@ body {
 }
 
 .cross-container {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: center;
-    height: 100%;
     position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .cross {
@@ -61,23 +59,18 @@ body {
     padding: 0;
 }
 
-.text-container {
+.footer-text-container {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
-    gap: 5px;
-}
-
-.small-text {
-    font-size: 16px;
-    margin: 0;
-    font-family: Arial, Helvetica, sans-serif;
+    height: 100%;
+    padding: 5px;
+    box-sizing: border-box;
 }
 
 .hide-text {
     opacity: 0;
-    transition: opacity 0.5s ease;
 }
 
 .show-text {
@@ -88,4 +81,24 @@ body {
     position: absolute;
     top: 200px;
     bottom: 0;
+}
+
+.shop-link {
+    text-decoration: underline;
+    text-decoration-color: transparent;
+    transition: 0.7s;
+    text-decoration-thickness: 2px;
+    text-underline-offset: 3px;
+
+    /*add those for opera and mozilla support*/
+    -webkit-text-decoration-color: transparent;
+    -moz-text-decoration-color: transparent;
+}
+
+.shop-link:hover {
+    text-decoration-color: black;
+
+    /*add those for opera and mozilla support*/
+    -webkit-text-decoration-color: black;
+    -moz-text-decoration-color: black;
 }
