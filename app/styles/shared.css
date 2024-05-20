@@ -1,75 +1,75 @@
 /* Arimo Bold */
 @font-face {
-    font-family: 'Arimo';
-    font-style: normal;
-    font-weight: bold;
-    src: url('fonts/arimo/Arimo-Bold.ttf') format('truetype');
+  font-family: 'Arimo';
+  font-style: normal;
+  font-weight: bold;
+  src: url('fonts/arimo/Arimo-Bold.ttf') format('truetype');
 }
 
 @font-face {
-    font-family: 'Arimo';
-    font-style: italic;
-    font-weight: bold;
-    src: url('fonts/arimo/Arimo-BoldItalic.ttf') format('truetype');
+  font-family: 'Arimo';
+  font-style: italic;
+  font-weight: bold;
+  src: url('fonts/arimo/Arimo-BoldItalic.ttf') format('truetype');
 }
 
 /* Arimo Semibold */
 @font-face {
-    font-family: 'Arimo';
-    font-style: normal;
-    font-weight: 600;
-    /* Semibold */
-    src: url('fonts/arimo/Arimo-SemiBold.ttf') format('truetype');
+  font-family: 'Arimo';
+  font-style: normal;
+  font-weight: 600;
+  /* Semibold */
+  src: url('fonts/arimo/Arimo-SemiBold.ttf') format('truetype');
 }
 
 @font-face {
-    font-family: 'Arimo';
-    font-style: italic;
-    font-weight: 600;
-    /* Semibold */
-    src: url('fonts/arimo/Arimo-SemiBoldItalic.ttf') format('truetype');
+  font-family: 'Arimo';
+  font-style: italic;
+  font-weight: 600;
+  /* Semibold */
+  src: url('fonts/arimo/Arimo-SemiBoldItalic.ttf') format('truetype');
 }
 
 /* Arimo Regular */
 @font-face {
-    font-family: 'Arimo';
-    font-style: normal;
-    font-weight: normal;
-    src: url('fonts/arimo/Arimo-Regular.ttf') format('truetype');
+  font-family: 'Arimo';
+  font-style: normal;
+  font-weight: normal;
+  src: url('fonts/arimo/Arimo-Regular.ttf') format('truetype');
 }
 
 @font-face {
-    font-family: 'Arimo';
-    font-style: italic;
-    font-weight: normal;
-    src: url('fonts/arimo/Arimo-Italic.ttf') format('truetype');
+  font-family: 'Arimo';
+  font-style: italic;
+  font-weight: normal;
+  src: url('fonts/arimo/Arimo-Italic.ttf') format('truetype');
 }
 
 /* Arimo Medium */
 @font-face {
-    font-family: 'Arimo';
-    font-style: normal;
-    font-weight: 500;
-    src: url('fonts/arimo/Arimo-Medium.ttf') format('truetype');
+  font-family: 'Arimo';
+  font-style: normal;
+  font-weight: 500;
+  src: url('fonts/arimo/Arimo-Medium.ttf') format('truetype');
 }
 
 @font-face {
-    font-family: 'Arimo';
-    font-style: italic;
-    font-weight: 500;
-    src: url('fonts/arimo/Arimo-MediumItalic.ttf') format('truetype');
+  font-family: 'Arimo';
+  font-style: italic;
+  font-weight: 500;
+  src: url('fonts/arimo/Arimo-MediumItalic.ttf') format('truetype');
 }
 
 a,
 p,
 div {
-    font-family: 'Arimo', sans-serif;
-    font-size: 17px;
-    margin: 0;
-    padding: 0;
-    color: black;
+  font-family: 'Arimo', sans-serif;
+  font-size: 16px;
+  margin: 0;
+  padding: 0;
+  color: black;
 }
 
 .width-100 {
-    width: 100%;
+  width: 100%;
 }

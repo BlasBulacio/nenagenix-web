@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useState } from "react";
 import { LinksFunction } from "@remix-run/node";
 import type { MetaFunction } from "@remix-run/deno";
@@ -10,7 +10,7 @@ import { Link, Location, useLocation } from "@remix-run/react";
 export const meta: MetaFunction = () => {
   return [
     { title: "Nenagenix" },
-    { name: "description", content: "Welcome to Nenagenix's official website." },
+    { name: "description", content: "Sitio oficial de Nenagenix." },
   ];
 };
 
@@ -19,7 +19,10 @@ export const links: LinksFunction = () => [
 ];
 
 export default function Index() {
-  const [crossClicked, setCrossClicked] = useState<boolean>(false);
+  const [showCross, setShowCross] = useState<boolean>(false);
+  const [animationActive, setAnimationActive] = useState<boolean>(false);
+
+
   const location: Location = useLocation();
 
   const topbarLinks: Array<ITopbarLink> = [
@@ -39,44 +42,46 @@ export default function Index() {
     */
   ]
 
-  const onClickCross = () => setCrossClicked(true);
-
-  const onKeyDownCross = (event: React.KeyboardEvent<HTMLImageElement>) => {
-    if (event.key === 'Enter') {
-      onClickCross();
-    }
-  };
-
-  const crossStyles = (isCrossClicked: boolean): React.CSSProperties => ({
+  const crossStyles = (showCross: boolean, rotateCross: boolean): React.CSSProperties => ({
     display: 'inline-block',
-    cursor: isCrossClicked ? 'default' : 'pointer',
-    width: '190px',
-    transition: 'transform .7s ease-in-out',
-    transform: isCrossClicked ? 'rotate(0)' : 'rotate(-45deg)',
-    WebkitTransform: isCrossClicked ? 'rotate(0)' : 'rotate(-45deg)',
-    msTransform: isCrossClicked ? 'rotate(0)' : 'rotate(-45deg)',
+    width: '182px',
+    transition: 'all .7s ease-in-out',
+    transform: rotateCross ? 'rotate(0)' : 'rotate(-45deg)',
+    WebkitTransform: rotateCross ? 'rotate(0)' : 'rotate(-45deg)',
+    msTransform: rotateCross ? 'rotate(0)' : 'rotate(-45deg)',
+    opacity: showCross ? '1' : '0',
   });
 
-  const linkStyles = (link: ITopbarLink, isLast: boolean): React.CSSProperties => ({
-    textDecoration: link.url === location.pathname ? 'underline' : 'none',
-    marginRight: !isLast ? '10px' : '0',
-    color: 'black'
-  });
-
-  const linkToShopContainerStyles = (isCrossClicked: boolean): React.CSSProperties => ({
+  const linkToShopContainerStyles = (showText: boolean): React.CSSProperties => ({
     position: 'absolute',
     bottom: '-55px',
     right: 0,
     left: 0,
     zIndex: 1,
     textAlign: 'center',
-    transition: 'opacity 0.5s ease',
-    opacity: isCrossClicked ? '1' : '0',
-    pointerEvents: isCrossClicked ? 'auto' : 'none',
+    transition: 'opacity .7s ease',
+    opacity: showText ? '1' : '0',
+    pointerEvents: showText ? 'auto' : 'none',
   });
+
+  useEffect(() => {
+    setShowCross(true);
+
+    const timer = setTimeout(() => {
+      setAnimationActive(true);
+    }, 800);
+
+    return () => clearTimeout(timer);
+  }, []);
+
+  const handleContextMenu = (event: React.MouseEvent<HTMLImageElement>) => {
+    event.preventDefault(); // Prevent the default right-click context menu
+  };
+
 
   return (
     <div className="home-container">
+      {/*
       <div className="topbar">
         {topbarLinks.map((link: ITopbarLink, index: number) =>
           <Link
@@ -89,28 +94,30 @@ export default function Index() {
           </Link>
         )}
       </div>
+      */}
       <div className="content">
         <div
           className="cross-container"
-          onClick={onClickCross}
-          onKeyDown={onKeyDownCross}
-          role="button"
-          tabIndex={0}
         >
           <img
-            style={crossStyles(crossClicked)}
+            style={crossStyles(showCross, animationActive)}
             src="/resources/cross.svg"
             alt="cross"
+            onContextMenu={handleContextMenu}
           />
           <div
-            style={linkToShopContainerStyles(crossClicked)}
+            style={linkToShopContainerStyles(animationActive)}
           >
             <Link
               className="shop-link"
               to="https://www.tiendanube.com/login"
               title=""
             >
-              Lo Más Cercano a Caer <br /> Preventa
+              Lo Más Cercano a Caer
+              <br />
+              <b>
+                Preventa
+              </b>
             </Link>
           </div>
         </div>
