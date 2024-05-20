@@ -22,6 +22,7 @@ export default function Index() {
   const [showCross, setShowCross] = useState<boolean>(false);
   const [animationActive, setAnimationActive] = useState<boolean>(false);
 
+  /*
 
   const location: Location = useLocation();
 
@@ -30,7 +31,6 @@ export default function Index() {
       title: 'Home',
       url: '/'
     }
-    /*
     {
       title: 'Galería',
       url: '/galeria'
@@ -39,8 +39,8 @@ export default function Index() {
       title: 'Links',
       url: '/links'
     }
-    */
   ]
+  */
 
   const crossStyles = (showCross: boolean, rotateCross: boolean): React.CSSProperties => ({
     display: 'inline-block',
