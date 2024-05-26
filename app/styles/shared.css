@@ -3,14 +3,16 @@
   font-family: 'Arimo';
   font-style: normal;
   font-weight: bold;
-  src: url('fonts/arimo/Arimo-Bold.ttf') format('truetype');
+  font-display: swap;
+  src: url('/fonts/arimo/Arimo-Bold.ttf') format('truetype');
 }
 
 @font-face {
   font-family: 'Arimo';
   font-style: italic;
   font-weight: bold;
-  src: url('fonts/arimo/Arimo-BoldItalic.ttf') format('truetype');
+  font-display: swap;
+  src: url('/fonts/arimo/Arimo-BoldItalic.ttf') format('truetype');
 }
 
 /* Arimo Semibold */
@@ -18,16 +20,18 @@
   font-family: 'Arimo';
   font-style: normal;
   font-weight: 600;
+  font-display: swap;
   /* Semibold */
-  src: url('fonts/arimo/Arimo-SemiBold.ttf') format('truetype');
+  src: url('/fonts/arimo/Arimo-SemiBold.ttf') format('truetype');
 }
 
 @font-face {
   font-family: 'Arimo';
   font-style: italic;
   font-weight: 600;
+  font-display: swap;
   /* Semibold */
-  src: url('fonts/arimo/Arimo-SemiBoldItalic.ttf') format('truetype');
+  src: url('/fonts/arimo/Arimo-SemiBoldItalic.ttf') format('truetype');
 }
 
 /* Arimo Regular */
@@ -35,14 +39,16 @@
   font-family: 'Arimo';
   font-style: normal;
   font-weight: normal;
-  src: url('fonts/arimo/Arimo-Regular.ttf') format('truetype');
+  font-display: swap;
+  src: url('/fonts/arimo/Arimo-Regular.ttf') format('truetype');
 }
 
 @font-face {
   font-family: 'Arimo';
   font-style: italic;
   font-weight: normal;
-  src: url('fonts/arimo/Arimo-Italic.ttf') format('truetype');
+  font-display: swap;
+  src: url('/fonts/arimo/Arimo-Italic.ttf') format('truetype');
 }
 
 /* Arimo Medium */
@@ -50,14 +56,16 @@
   font-family: 'Arimo';
   font-style: normal;
   font-weight: 500;
-  src: url('fonts/arimo/Arimo-Medium.ttf') format('truetype');
+  font-display: swap;
+  src: url('/fonts/arimo/Arimo-Medium.ttf') format('truetype');
 }
 
 @font-face {
   font-family: 'Arimo';
   font-style: italic;
   font-weight: 500;
-  src: url('fonts/arimo/Arimo-MediumItalic.ttf') format('truetype');
+  font-display: swap;
+  src: url('/fonts/arimo/Arimo-MediumItalic.ttf') format('truetype');
 }
 
 a,
@@ -72,4 +80,8 @@ div {
 
 .width-100 {
   width: 100%;
+}
+
+.font-style-italic {
+  font-style: italic;
 }

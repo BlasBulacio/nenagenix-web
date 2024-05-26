@@ -1,11 +1,10 @@
-import React, { useEffect } from "react";
-import { useState } from "react";
-import { LinksFunction } from "@remix-run/node";
-import type { MetaFunction } from "@remix-run/deno";
+import React, { useEffect, useState } from "react";
+import { LinksFunction, MetaFunction } from "@remix-run/node";
 
 import styles from "~/styles/index.css?url";
-import ITopbarLink from "~/types/TopbarLink";
-import { Link, Location, useLocation } from "@remix-run/react";
+// import ITopbarLink from "~/types/TopbarLink";
+// import { Link, Location, useLocation } from "@remix-run/react";
+import { Link } from "@remix-run/react";
 
 export const meta: MetaFunction = () => {
   return [
@@ -110,14 +109,14 @@ export default function Index() {
           >
             <Link
               className="shop-link"
-              to="https://www.tiendanube.com/login"
+              to="https://nenagenix.mitiendanube.com/"
               title=""
             >
-              Lo Más Cercano a Caer
+              <i>
+                &quot;Lo Más Cercano a Caer&quot;
+              </i>
               <br />
-              <b>
-                Preventa
-              </b>
+              Preventa
             </Link>
           </div>
         </div>

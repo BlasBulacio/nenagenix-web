@@ -83,7 +83,7 @@ body {
   text-decoration: underline;
   text-decoration-color: transparent;
   transition: 0.7s;
-  text-decoration-thickness: 2px;
+  text-decoration-thickness: 1px;
   text-underline-offset: 3px;
 
   /*add those for opera and mozilla support*/
