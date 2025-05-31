@@ -7,9 +7,14 @@ import {
 } from "@remix-run/react";
 
 import styles from '~/styles/shared.css?url';
+import themeStyles from '~/styles/components/theme-selector.css?url';
+import { ThemeProvider } from "./context/ThemeContext";
 
 export function links() {
-  return [{ rel: 'stylesheet', href: styles }];
+  return [
+    { rel: 'stylesheet', href: styles },
+    { rel: 'stylesheet', href: themeStyles }
+  ];
 }
 
 export default function App() {
@@ -22,7 +27,9 @@ export default function App() {
         <Links />
       </head>
       <body>
-        <Outlet />
+        <ThemeProvider>
+          <Outlet />
+        </ThemeProvider>
         <ScrollRestoration />
         <Scripts />
       </body>

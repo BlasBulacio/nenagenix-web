@@ -1,10 +1,8 @@
 import React from "react";
 import { LinksFunction, MetaFunction } from "@remix-run/node";
-import { Link, useLocation } from "@remix-run/react";
-
 import styles from "~/styles/index.css?url";
-import { getTopbarLinkStyles } from "~/styles/components/navigationStyles";
-import { topbarLinks, socialLinks } from "~/config/navigation";
+import { socialLinks } from "~/config/navigation";
+import Layout from "~/components/Layout";
 
 export const meta: MetaFunction = () => {
   return [
@@ -18,23 +16,8 @@ export const links: LinksFunction = () => [
 ];
 
 export default function Links() {
-  const location = useLocation();
-
   return (
-    <div className="home-container">
-      <div className="topbar">
-        {topbarLinks.map((link, index) =>
-          <Link
-            key={index}
-            to={link.url}
-            title=""
-            style={getTopbarLinkStyles(link, location, index === topbarLinks.length)}
-            aria-current={link.url === location.pathname ? "page" : undefined}
-          >
-            {link.title}
-          </Link>
-        )}
-      </div>
+    <Layout>
       <div className="content">
         <div className="links-container">
           {socialLinks.map((link, index) => (
@@ -51,12 +34,6 @@ export default function Links() {
           ))}
         </div>
       </div>
-      <div className="footer">
-        <div className="footer-text-container">
-          <p>Nenagenix 2024 ©</p>
-          <p>Bohemian Groove Corp ®</p>
-        </div>
-      </div>
-    </div>
+    </Layout>
   );
 } 

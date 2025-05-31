@@ -1,9 +1,12 @@
+@import './theme.css';
+
 body {
-  background-color: #f8f8f8;
+  background-color: var(--background-color);
   display: flex;
   justify-content: center;
   align-items: center;
   margin: 0;
+  color: var(--text-color);
 }
 
 .topbar {
@@ -11,8 +14,14 @@ body {
   height: 50px;
   display: flex;
   align-items: center;
+  justify-content: space-between;
   box-sizing: border-box;
   padding: 0 20px;
+}
+
+.topbar__links {
+  display: flex;
+  align-items: center;
 }
 
 .content {
@@ -36,6 +45,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
+  color: var(--text-color);
 }
 
 .cross-click {
@@ -91,7 +101,7 @@ body {
 }
 
 .spotify-link:hover {
-  text-decoration-color: black;
+  text-decoration-color: var(--text-color);
 }
 
 .links-container {
@@ -108,20 +118,20 @@ body {
   align-items: center;
   gap: 10px;
   padding: 15px 30px;
-  background-color: #f5f5f5;
+  background-color: var(--background-secondary);
   border-radius: 8px;
   text-decoration: underline;
   text-decoration-color: transparent;
   text-underline-offset: 3px;
   transition: all 0.3s ease, text-decoration-color 0.3s ease;
-  color: black;
+  color: var(--text-color);
   font-size: 18px;
 }
 
 .social-link:hover {
   transform: translateY(-2px);
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  text-decoration-color: black;
+  box-shadow: 0 4px 8px var(--shadow-color);
+  text-decoration-color: var(--text-color);
 }
 
 .social-icon {
@@ -137,5 +147,5 @@ body {
 
 .topbar a:hover,
 .topbar a[aria-current="page"] {
-  text-decoration-color: black;
+  text-decoration-color: var(--text-color);
 }
