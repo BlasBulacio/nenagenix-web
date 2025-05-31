@@ -1,0 +1,22 @@
+.nav {
+  display: flex;
+  align-items: center;
+}
+
+.nav__link {
+  color: black;
+  margin-right: 10px;
+  text-decoration: underline;
+  text-decoration-color: transparent;
+  text-underline-offset: 3px;
+  transition: text-decoration-color 0.3s ease;
+}
+
+.nav__link:last-child {
+  margin-right: 0;
+}
+
+.nav__link--active,
+.nav__link:hover {
+  text-decoration-color: black;
+} 

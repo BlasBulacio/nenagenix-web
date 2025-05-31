@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { LinksFunction, MetaFunction } from "@remix-run/node";
+import { Link, useLocation } from "@remix-run/react";
 
 import styles from "~/styles/index.css?url";
-// import ITopbarLink from "~/types/TopbarLink";
-// import { Link, Location, useLocation } from "@remix-run/react";
-import { Link } from "@remix-run/react";
+import { getCrossStyles, getLinkToShopContainerStyles } from "~/styles/components/homeStyles";
+import { getTopbarLinkStyles } from "~/styles/components/navigationStyles";
+import { topbarLinks } from "~/config/navigation";
 
 export const meta: MetaFunction = () => {
   return [
@@ -18,105 +19,67 @@ export const links: LinksFunction = () => [
 ];
 
 export default function Index() {
+  const location = useLocation();
   const [showCross, setShowCross] = useState<boolean>(false);
   const [animationActive, setAnimationActive] = useState<boolean>(false);
 
-  /*
-
-  const location: Location = useLocation();
-
-  const topbarLinks: Array<ITopbarLink> = [
-    {
-      title: 'Home',
-      url: '/'
-    }
-    {
-      title: 'Galería',
-      url: '/galeria'
-    },
-    {
-      title: 'Links',
-      url: '/links'
-    }
-  ]
-  */
-
-  const crossStyles = (showCross: boolean, rotateCross: boolean): React.CSSProperties => ({
-    display: 'inline-block',
-    width: '182px',
-    transition: 'all .7s ease-in-out',
-    transform: rotateCross ? 'rotate(0)' : 'rotate(-45deg)',
-    WebkitTransform: rotateCross ? 'rotate(0)' : 'rotate(-45deg)',
-    msTransform: rotateCross ? 'rotate(0)' : 'rotate(-45deg)',
-    opacity: showCross ? '1' : '0',
-  });
-
-  const linkToShopContainerStyles = (showText: boolean): React.CSSProperties => ({
-    position: 'absolute',
-    bottom: '-55px',
-    right: 0,
-    left: 0,
-    zIndex: 1,
-    textAlign: 'center',
-    transition: 'opacity .7s ease',
-    opacity: showText ? '1' : '0',
-    pointerEvents: showText ? 'auto' : 'none',
-  });
-
   useEffect(() => {
-    setShowCross(true);
+    setShowCross(false);
+    setAnimationActive(false);
 
-    const timer = setTimeout(() => {
+    // Reset animation states
+    const showTimer = setTimeout(() => {
+      setShowCross(true);
+    }, 100);
+
+    const animationTimer = setTimeout(() => {
       setAnimationActive(true);
     }, 800);
 
-    return () => clearTimeout(timer);
-  }, []);
+    return () => {
+      clearTimeout(showTimer);
+      clearTimeout(animationTimer);
+      setShowCross(false);
+      setAnimationActive(false);
+    };
+  }, [location.pathname]); // Re-run effect when pathname changes
 
   const handleContextMenu = (event: React.MouseEvent<HTMLImageElement>) => {
-    event.preventDefault(); // Prevent the default right-click context menu
+    event.preventDefault();
   };
 
-
   return (
-    <div className="home-container">
-      {/*
+    <div className="home-container" key={location.pathname}>
       <div className="topbar">
-        {topbarLinks.map((link: ITopbarLink, index: number) =>
+        {topbarLinks.map((link, index) =>
           <Link
             key={index}
             to={link.url}
             title=""
-            style={linkStyles(link, index === topbarLinks.length)}
+            style={getTopbarLinkStyles(link, location, index === topbarLinks.length)}
+            aria-current={link.url === location.pathname ? "page" : undefined}
           >
             {link.title}
           </Link>
         )}
       </div>
-      */}
       <div className="content">
-        <div
-          className="cross-container"
-        >
+        <div className="cross-container">
           <img
-            style={crossStyles(showCross, animationActive)}
+            style={getCrossStyles(showCross, animationActive)}
             src="/resources/cross.svg"
             alt="cross"
             onContextMenu={handleContextMenu}
           />
           <div
-            style={linkToShopContainerStyles(animationActive)}
+            style={getLinkToShopContainerStyles(animationActive)}
           >
             <Link
-              className="shop-link"
+              className="spotify-link"
               to="https://nenagenix.mitiendanube.com/"
               title=""
             >
-              <i>
-                &quot;Lo Más Cercano a Caer&quot;
-              </i>
-              <br />
-              Preventa
+              <i>Escuchá &quot;Lo Más Cercano a Caer&quot;</i>
             </Link>
           </div>
         </div>
